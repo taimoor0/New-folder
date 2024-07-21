@@ -26,7 +26,6 @@ class UI:
 
     def create_login_frame(self):
         self.clear_frame()
-        # self.create_logout_frame_for_admin()
 
         # Configure the grid for the main app to have two columns
         self.app.grid_rowconfigure(0, weight=1)
@@ -76,8 +75,8 @@ class UI:
         self.login_button = ctk.CTkButton(self.login_frame, text="Login", command=self.login)
         self.login_button.grid(row=3, column=0, pady=12, padx=30, sticky="nsew")
 
-        # self.signup_button = ctk.CTkButton(self.login_frame, text="Sign Up", command=self.create_signup_frame)
-        # self.signup_button.grid(row=3, column=1, pady=12, padx=10, sticky="nsew")
+        self.signup_button = ctk.CTkButton(self.login_frame, text="Sign Up", command=self.create_signup_frame)
+        self.signup_button.grid(row=3, column=1, pady=12, padx=10, sticky="nsew")
 
     def create_signup_frame(self):
         self.clear_frame()
@@ -539,86 +538,86 @@ class UI:
         self.app.grid_rowconfigure(0, weight=1)
         self.app.grid_columnconfigure(0, weight=1)
 
-        self.main_frame = ctk.CTkFrame(self.app, width=800, height=600, fg_color="transparent")
-        self.main_frame.grid(row=0, column=0, columnspan=2, padx=60, pady=20, sticky="nsew")
+        self.main_frame = ctk.CTkFrame(self.app, width=600, height=400, fg_color="transparent")
+        self.main_frame.grid(row=0, column=0, columnspan=2, padx=40, pady=20, sticky="nsew")
 
         self.main_frame.grid_rowconfigure(0, weight=0)
         self.main_frame.grid_rowconfigure(1, weight=1)
         self.main_frame.grid_columnconfigure(0, weight=1)
 
         # Add form label
-        self.form_label = ctk.CTkLabel(self.main_frame, text="Add New User", font=("Arial", 24))
-        self.form_label.grid(row=0, column=0, pady=12, padx=10, sticky="nsew")
+        self.form_label = ctk.CTkLabel(self.main_frame, text="Add New User", font=("Arial", 18))
+        self.form_label.grid(row=0, column=0, pady=10, padx=10, sticky="nsew")
 
         # Create and configure the form frame
-        self.form_frame = ctk.CTkFrame(self.main_frame, width=400, height=600, fg_color="transparent")
-        self.form_frame.grid(row=1, column=0, pady=60, padx=30, sticky="nsew")
+        self.form_frame = ctk.CTkFrame(self.main_frame, width=300, height=400, fg_color="transparent")
+        self.form_frame.grid(row=1, column=0, pady=40, padx=20, sticky="nsew")
         self.form_frame.grid_columnconfigure(0, weight=1)
         self.form_frame.grid_columnconfigure(1, weight=1)
 
         # Add username entry
-        ctk.CTkLabel(self.form_frame, text="User Name", font=("Arial", 24)).grid(row=1, column=0, pady=12, padx=10, sticky="nsw")
+        ctk.CTkLabel(self.form_frame, text="User Name", font=("Arial", 18)).grid(row=1, column=0, pady=6, padx=5, sticky="nsw")
         self.username_entry = ctk.CTkEntry(
             self.form_frame,
             placeholder_text="User Name",
             corner_radius=10,
-            height=40,
+            height=30,
         )
-        self.username_entry.grid(row=2, column=0, pady=12, padx=10, sticky="nsew")
+        self.username_entry.grid(row=2, column=0, pady=6, padx=5, sticky="nsew")
 
         # Add password entry
-        ctk.CTkLabel(self.form_frame, text="Password", font=("Arial", 24)).grid(row=1, column=1, pady=12, padx=10, sticky="nsw")
+        ctk.CTkLabel(self.form_frame, text="Password", font=("Arial", 18)).grid(row=1, column=1, pady=6, padx=5, sticky="nsw")
         self.password_entry = ctk.CTkEntry(
             self.form_frame,
             placeholder_text="Password",
             show="*",
             corner_radius=10,
-            height=40,
+            height=30,
         )
-        self.password_entry.grid(row=2, column=1, pady=12, padx=10, sticky="nsew")
+        self.password_entry.grid(row=2, column=1, pady=6, padx=5, sticky="nsew")
 
         # Add full name entry
-        ctk.CTkLabel(self.form_frame, text="Full Name", font=("Arial", 24)).grid(row=3, column=0, pady=12, padx=10, sticky="nsw")
+        ctk.CTkLabel(self.form_frame, text="Full Name", font=("Arial", 18)).grid(row=3, column=0, pady=6, padx=5, sticky="nsw")
         self.full_name_entry = ctk.CTkEntry(
             self.form_frame,
             placeholder_text="Full Name",
             corner_radius=10,
-            height=40,
+            height=30,
         )
-        self.full_name_entry.grid(row=4, column=0, pady=12, padx=10, sticky="nsew")
+        self.full_name_entry.grid(row=4, column=0, pady=6, padx=5, sticky="nsew")
 
         # Add contact number entry
-        ctk.CTkLabel(self.form_frame, text="Contact Number", font=("Arial", 24)).grid(row=3, column=1, pady=12, padx=10, sticky="nsw")
+        ctk.CTkLabel(self.form_frame, text="Contact Number", font=("Arial", 18)).grid(row=3, column=1, pady=6, padx=5, sticky="nsw")
         self.contact_number_entry = ctk.CTkEntry(
             self.form_frame,
             placeholder_text="Contact Number",
             corner_radius=10,
-            height=40,
+            height=30,
         )
-        self.contact_number_entry.grid(row=4, column=1, pady=12, padx=10, sticky="nsew")
+        self.contact_number_entry.grid(row=4, column=1, pady=6, padx=5, sticky="nsew")
 
         # Add national ID entry
-        ctk.CTkLabel(self.form_frame, text="National ID", font=("Arial", 24)).grid(row=5, column=0, pady=12, padx=10, sticky="nsw")
+        ctk.CTkLabel(self.form_frame, text="National ID", font=("Arial", 18)).grid(row=5, column=0, pady=6, padx=5, sticky="nsw")
         self.national_id_entry = ctk.CTkEntry(
             self.form_frame,
             placeholder_text="National ID",
             corner_radius=10,
-            height=40,
+            height=30,
         )
-        self.national_id_entry.grid(row=6, column=0, pady=12, padx=10, sticky="nsew")
+        self.national_id_entry.grid(row=6, column=0, pady=6, padx=5, sticky="nsew")
 
         # Add user type combobox
-        ctk.CTkLabel(self.form_frame, text="User Role", font=("Arial", 24)).grid(row=5, column=1, pady=12, padx=10, sticky="nsw")
+        ctk.CTkLabel(self.form_frame, text="User Role", font=("Arial", 18)).grid(row=5, column=1, pady=6, padx=5, sticky="nsw")
         self.user_type_combobox = ctk.CTkComboBox(
             self.form_frame,
             values=["Guest", "Worker", "Employee"],
             corner_radius=10,
-            height=40,
+            height=30,
         )
-        self.user_type_combobox.grid(row=6, column=1, pady=12, padx=10, sticky="nsew")
+        self.user_type_combobox.grid(row=6, column=1, pady=6, padx=5, sticky="nsew")
 
         # Add safety gears checkboxes
-        ctk.CTkLabel(self.form_frame, text="Safety Gears", font=("Arial", 24)).grid(row=7, column=0, pady=12, padx=10, sticky="nsw")
+        ctk.CTkLabel(self.form_frame, text="Safety Gears", font=("Arial", 18)).grid(row=7, column=0, pady=6, padx=5, sticky="nsw")
         self.gear_vars = {}
         gears = ["Helmet", "Vest", "Goggles", "Gloves", "Boots"]
         for i, gear in enumerate(gears):
@@ -629,33 +628,33 @@ class UI:
                 variable=self.gear_vars[gear],
                 onvalue="Active",
                 offvalue="Disable",
-            ).grid(row=8 + i, column=0, pady=10, padx=10, sticky="w")
+            ).grid(row=8 + i, column=0, pady=5, padx=5, sticky="w")
 
         # Add back to admin dashboard button
         self.back_to_admin_dashboard_button = ctk.CTkButton(
             self.form_frame,
             text="Back to Dashboard",
             command=self.create_logout_frame_for_admin,
-            width=140,
+            width=120,
             fg_color="red",
             text_color="black",
             corner_radius=10,
-            height=40,
+            height=30,
         )
-        self.back_to_admin_dashboard_button.grid(row=14, column=0, pady=12, padx=10, sticky="nsew")
+        self.back_to_admin_dashboard_button.grid(row=14, column=0, pady=6, padx=5, sticky="nsew")
 
         # Add add user button
         self.add_user_button = ctk.CTkButton(
             self.form_frame,
             text="Add User",
             command=self.add_user_by_admin,
-            width=140,
+            width=120,
             fg_color="yellow",
             text_color="black",
             corner_radius=10,
-            height=40,
+            height=30,
         )
-        self.add_user_button.grid(row=14, column=1, pady=12, padx=10, sticky="nsew")
+        self.add_user_button.grid(row=14, column=1, pady=6, padx=5, sticky="nsew")
 
     def add_user_by_admin(self):
         username = self.username_entry.get()
