@@ -39,9 +39,9 @@ class User(Base):
     is_gloves_verify = Column(Boolean, default=0)
     gloves_voilation_count = Column(Integer, default=0)
 
-    is_boots_check = Column(String(50), default="disable")
-    is_boots_verify = Column(Boolean, default=0)
-    boots_voilation_count = Column(Integer, default=0)
+    is_boot_check = Column(String(50), default="disable")
+    is_boot_verify = Column(Boolean, default=0)
+    boot_voilation_count = Column(Integer, default=0)
 
     total_violation_count = Column(Integer, default=0)
 

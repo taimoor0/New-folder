@@ -255,7 +255,7 @@ class UI:
             "Is Vest Check",
             "Is Googles Check",
             "Is Gloves Check",
-            "Is Boots Check",
+            "Is Boot Check",
             "Update User",
             "Delete User",
         ]
@@ -315,9 +315,9 @@ class UI:
             ).grid(row=row, column=10, pady=5, padx=5, sticky="nsew")
             ctk.CTkLabel(
                 self.table_frame,
-                text="Active" if user.is_boots_check.lower() == "active" else "Disable",
+                text="Active" if user.is_boot_check.lower() == "active" else "Disable",
                 text_color="black",
-                fg_color="orange" if user.is_boots_check.lower() == "active" else "red",
+                fg_color="orange" if user.is_boot_check.lower() == "active" else "red",
             ).grid(row=row, column=11, pady=5, padx=5, sticky="nsew")
 
             self.update_user_label = ctk.CTkButton(self.table_frame, text="Update", command=lambda u=user.user_id: self.update_user_by_admin(u))
@@ -418,7 +418,7 @@ class UI:
             "Vest": ctk.StringVar(value="active" if user.is_vest_check == "active" else "disable"),
             "Goggles": ctk.StringVar(value="active" if user.is_goggles_check == "active" else "disable"),
             "Gloves": ctk.StringVar(value="active" if user.is_gloves_check == "active" else "disable"),
-            "Boots": ctk.StringVar(value="active" if user.is_boots_check == "active" else "disable"),
+            "Boot": ctk.StringVar(value="active" if user.is_boot_check == "active" else "disable"),
         }
 
         ctk.CTkLabel(self.form_frame, text="Verification Check", font=("Arial", 18, "bold")).grid(
@@ -441,7 +441,7 @@ class UI:
             "Vest": user.vest_voilation_count,
             "Goggles": user.goggles_Voilation_count,
             "Gloves": user.gloves_voilation_count,
-            "Boots": user.boots_voilation_count,
+            "Boot": user.boot_voilation_count,
         }
         total_violations = sum(violation_counts.values())
 
@@ -500,7 +500,7 @@ class UI:
         is_vest_check = self.gear_vars["Vest"].get()
         is_goggles_check = self.gear_vars["Goggles"].get()
         is_gloves_check = self.gear_vars["Gloves"].get()
-        is_boots_check = self.gear_vars["Boots"].get()
+        is_boot_check = self.gear_vars["Boot"].get()
 
         if self.user_model.update_user_by_admin(
             user_id,
@@ -513,7 +513,7 @@ class UI:
             is_vest_check,
             is_goggles_check,
             is_gloves_check,
-            is_boots_check,
+            is_boot_check,
         ):
             CustomMessageBox(self.app, "Success", "User updated successfully.")
             self.create_logout_frame_for_admin()
@@ -619,7 +619,7 @@ class UI:
         # Add safety gears checkboxes
         ctk.CTkLabel(self.form_frame, text="Safety Gears", font=("Arial", 18)).grid(row=7, column=0, pady=6, padx=5, sticky="nsw")
         self.gear_vars = {}
-        gears = ["Helmet", "Vest", "Goggles", "Gloves", "Boots"]
+        gears = ["Helmet", "Vest", "Goggles", "Gloves", "Boot"]
         for i, gear in enumerate(gears):
             self.gear_vars[gear] = ctk.StringVar(value="Disable")
             ctk.CTkCheckBox(
@@ -669,7 +669,7 @@ class UI:
         is_vest_check = self.gear_vars["Vest"].get()
         is_goggles_check = self.gear_vars["Goggles"].get()
         is_gloves_check = self.gear_vars["Gloves"].get()
-        is_boots_check = self.gear_vars["Boots"].get()
+        is_boot_check = self.gear_vars["Boot"].get()
 
         if self.user_model.create_user_by_admin(
             username,
@@ -682,7 +682,7 @@ class UI:
             is_vest_check,
             is_goggles_check,
             is_gloves_check,
-            is_boots_check,
+            is_boot_check,
         ):
             CustomMessageBox(self.app, "Success", "User added successfully.")
             self.create_logout_frame_for_admin()
@@ -697,59 +697,59 @@ class UI:
         self.clear_frame()
 
         self.logout_frame = ctk.CTkFrame(self.app, fg_color="transparent")
-        self.logout_frame.grid(row=0, column=0, padx=60, pady=20, sticky="nsew")
+        self.logout_frame.grid(row=0, column=0, padx=40, pady=20, sticky="nsew")
 
         # Welcome label
-        self.logout_label = ctk.CTkLabel(self.logout_frame, text=f"Welcome {self.username}", font=("Arial", 24))
-        self.logout_label.grid(row=0, column=0, pady=12, padx=10, sticky="nsew")
+        self.logout_label = ctk.CTkLabel(self.logout_frame, text=f"Welcome {self.username}", font=("Arial", 18))
+        self.logout_label.grid(row=0, column=0, pady=10, padx=10, sticky="nsew")
 
         # Logout button
         self.logout_button = ctk.CTkButton(self.logout_frame, text="Logout", command=self.create_login_frame)
-        self.logout_button.grid(row=1, column=0, pady=12, padx=10, sticky="ew")
+        self.logout_button.grid(row=1, column=0, pady=10, padx=10, sticky="ew")
 
         # Camera control button
         self.camera_button = ctk.CTkButton(self.logout_frame, text="Stop Camera", command=self.toggle_camera)
-        self.camera_button.grid(row=2, column=0, pady=12, padx=10, sticky="ew")
+        self.camera_button.grid(row=2, column=0, pady=10, padx=10, sticky="ew")
 
         # Camera frame
-        self.camera_frame = ctk.CTkFrame(self.logout_frame, width=800, height=600, corner_radius=15, fg_color="transparent")
-        self.camera_frame.grid(row=3, column=0, pady=12, padx=10, sticky="nsew")
+        self.camera_frame = ctk.CTkFrame(self.logout_frame, width=600, height=400, corner_radius=10, fg_color="transparent")
+        self.camera_frame.grid(row=3, column=0, pady=10, padx=10, sticky="nsew")
 
         # Add image label for displaying camera feed
-        self.image_label = ctk.CTkLabel(self.camera_frame, text="", width=780, height=400, fg_color="black", corner_radius=15)
+        self.image_label = ctk.CTkLabel(self.camera_frame, text="", width=580, height=300, fg_color="black", corner_radius=10)
         self.image_label.grid(row=0, column=0, padx=10, pady=10, sticky="nsew")
 
         # Add result label for displaying detection results
-        self.result_label = ctk.CTkLabel(self.logout_frame, text="Gear Status:", font=("Arial", 18))
-        self.result_label.grid(row=4, column=0, padx=10, pady=(10, 5), sticky="w")
+        self.result_label = ctk.CTkLabel(self.logout_frame, text="Gear Status:", font=("Arial", 14))
+        self.result_label.grid(row=3, column=1, padx=10, pady=(10, 5), sticky="w")
 
         # Add missing gears label for displaying missing gear information
-        self.missing_gears_label = ctk.CTkLabel(self.logout_frame, text="Missing Gears:", font=("Arial", 18))
-        self.missing_gears_label.grid(row=5, column=0, padx=10, pady=(5, 10), sticky="w")
+        self.missing_gears_label = ctk.CTkLabel(self.logout_frame, text="Missing Gears:", font=("Arial", 14))
+        self.missing_gears_label.grid(row=3, column=2, padx=10, pady=(5, 10), sticky="w")
 
         user = self.user_model.get_user_by_username(self.username)
         self.gear_status_labels = {}
         self.gear_violation_check_status = {}
 
         if user.is_helmet_check.lower() == "active":
-            self.gear_status_labels["Helmet"] = ctk.CTkLabel(self.result_label, text="Helmet: No", font=("Arial", 16), fg_color="red")
+            self.gear_status_labels["Helmet"] = ctk.CTkLabel(self.result_label, text="Helmet: No", font=("Arial", 12), fg_color="red")
             self.gear_violation_check_status["helmet"] = False
 
         if user.is_vest_check.lower() == "active":
-            self.gear_status_labels["Vest"] = ctk.CTkLabel(self.result_label, text="Vest: No", font=("Arial", 16), fg_color="red")
+            self.gear_status_labels["Vest"] = ctk.CTkLabel(self.result_label, text="Vest: No", font=("Arial", 12), fg_color="red")
             self.gear_violation_check_status["vest"] = False
 
         if user.is_goggles_check.lower() == "active":
-            self.gear_status_labels["Goggles"] = ctk.CTkLabel(self.result_label, text="Goggles: No", font=("Arial", 16), fg_color="red")
+            self.gear_status_labels["Goggles"] = ctk.CTkLabel(self.result_label, text="Goggles: No", font=("Arial", 12), fg_color="red")
             self.gear_violation_check_status["goggles"] = False
 
         if user.is_gloves_check.lower() == "active":
-            self.gear_status_labels["Gloves"] = ctk.CTkLabel(self.result_label, text="Gloves: No", font=("Arial", 16), fg_color="red")
+            self.gear_status_labels["Gloves"] = ctk.CTkLabel(self.result_label, text="Gloves: No", font=("Arial", 12), fg_color="red")
             self.gear_violation_check_status["gloves"] = False
 
-        if user.is_boots_check.lower() == "active":
-            self.gear_status_labels["Boots"] = ctk.CTkLabel(self.result_label, text="Boots: No", font=("Arial", 16), fg_color="red")
-            self.gear_violation_check_status["boots"] = False
+        if user.is_boot_check.lower() == "active":
+            self.gear_status_labels["Boot"] = ctk.CTkLabel(self.result_label, text="Boot: No", font=("Arial", 12), fg_color="red")
+            self.gear_violation_check_status["boot"] = False
 
         for i, (gear, label) in enumerate(self.gear_status_labels.items()):
             label.grid(row=i + 1, column=0, padx=10, pady=(5, 0), sticky="w")
@@ -787,8 +787,8 @@ class UI:
                 elif gear.lower() == "gloves":
                     user.gloves_voilation_count += 1
                     self.gear_violation_check_status[proper_gear_name] = False
-                elif gear.lower() == "boots":
-                    user.boots_voilation_count += 1
+                elif gear.lower() == "boot":
+                    user.boot_voilation_count += 1
                     self.gear_violation_check_status[proper_gear_name] = False
 
                 user.total_violation_count += 1
@@ -803,7 +803,7 @@ class UI:
         user.is_vest_verify = self.gear_violation_check_status["vest"] if "vest" in self.gear_violation_check_status else False
         user.is_goggles_verify = self.gear_violation_check_status["goggles"] if "goggles" in self.gear_violation_check_status else False
         user.is_gloves_verify = self.gear_violation_check_status["gloves"] if "gloves" in self.gear_violation_check_status else False
-        user.is_boots_verify = self.gear_violation_check_status["boots"] if "boots" in self.gear_violation_check_status else False
+        user.is_boot_verify = self.gear_violation_check_status["boot"] if "boot" in self.gear_violation_check_status else False
 
         self.user_model.update_user(user)
 

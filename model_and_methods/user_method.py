@@ -60,7 +60,7 @@ class UserMethod:
         is_vest_check,
         is_goggles_check,
         is_gloves_check,
-        is_boots_check,
+        is_boot_check,
     ):
         try:
             user = self.db.query(User).filter(User.user_id == user_id).first()
@@ -74,7 +74,7 @@ class UserMethod:
                 user.is_vest_check = is_vest_check
                 user.is_goggles_check = is_goggles_check
                 user.is_gloves_check = is_gloves_check
-                user.is_boots_check = is_boots_check
+                user.is_boot_check = is_boot_check
                 self.db.commit()
                 return True
             return False
@@ -95,7 +95,7 @@ class UserMethod:
         is_vest_check,
         is_goggles_check,
         is_gloves_check,
-        is_boots_check,
+        is_boot_check,
     ):
         try:
             new_user = User(
@@ -109,7 +109,7 @@ class UserMethod:
                 is_vest_check=is_vest_check,
                 is_goggles_check=is_goggles_check,
                 is_gloves_check=is_gloves_check,
-                is_boots_check=is_boots_check,
+                is_boot_check=is_boot_check,
             )
             self.db.add(new_user)
             self.db.commit()
